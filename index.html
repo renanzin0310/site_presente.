@@ -1,0 +1,2117 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Para você ❤️</title>
+
+
+    <style>
+
+        /* =========================================
+           CONFIGURAÇÕES GERAIS
+        ========================================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Georgia, "Times New Roman", serif;
+
+            color: #f5f0df;
+
+            background:
+                radial-gradient(
+                    circle at 50% 0%,
+                    #292d55,
+                    #111225 40%,
+                    #060711 100%
+                );
+
+            overflow-x: hidden;
+        }
+
+
+        /* =========================================
+           TELA DE ENTRADA
+        ========================================= */
+
+        #entrada {
+
+            position: fixed;
+
+            inset: 0;
+
+            z-index: 9999;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            text-align: center;
+
+            background:
+
+                radial-gradient(
+                    circle at center,
+                    #25294e 0%,
+                    #111225 45%,
+                    #05060d 100%
+                );
+
+            transition:
+                opacity 1.2s ease,
+                visibility 1.2s ease;
+        }
+
+
+        #entrada.saindo {
+
+            opacity: 0;
+
+            visibility: hidden;
+
+        }
+
+
+        .entrada-conteudo {
+
+            width: 90%;
+
+            max-width: 650px;
+
+            animation:
+                aparecer 2s ease;
+        }
+
+
+        @keyframes aparecer {
+
+            from {
+
+                opacity: 0;
+
+                transform:
+                    translateY(30px);
+
+            }
+
+            to {
+
+                opacity: 1;
+
+                transform:
+                    translateY(0);
+
+            }
+
+        }
+
+
+        .entrada-simbolo {
+
+            font-size: 65px;
+
+            margin-bottom: 25px;
+
+            animation:
+                flutuar 4s ease-in-out infinite;
+        }
+
+
+        @keyframes flutuar {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-12px);
+            }
+
+        }
+
+
+        .entrada-conteudo h1 {
+
+            color: #d8b76a;
+
+            font-size:
+                clamp(42px, 8vw, 75px);
+
+            margin-bottom: 15px;
+
+            text-shadow:
+                0 0 30px
+                rgba(216,183,106,0.25);
+        }
+
+
+        .entrada-conteudo p {
+
+            color: #c9c7d2;
+
+            line-height: 1.8;
+
+            font-size: 18px;
+
+            margin-bottom: 35px;
+        }
+
+
+        /* BOTÃO DE ENTRADA */
+
+        .botao-entrada {
+
+            position: relative;
+
+            display: inline-block;
+
+            padding:
+                17px 42px;
+
+            border:
+                1px solid #d8b76a;
+
+            border-radius: 35px;
+
+            color: #d8b76a;
+
+            text-decoration: none;
+
+            font-size: 17px;
+
+            letter-spacing: 1px;
+
+            cursor: pointer;
+
+            background:
+                rgba(216,183,106,0.03);
+
+            transition:
+                0.4s ease;
+
+            overflow: hidden;
+        }
+
+
+        .botao-entrada::before {
+
+            content: "";
+
+            position: absolute;
+
+            top: 0;
+
+            left: -100%;
+
+            width: 100%;
+
+            height: 100%;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    rgba(255,255,255,0.25),
+                    transparent
+                );
+
+            transition: 0.6s;
+        }
+
+
+        .botao-entrada:hover::before {
+
+            left: 100%;
+
+        }
+
+
+        .botao-entrada:hover {
+
+            background: #d8b76a;
+
+            color: #111225;
+
+            box-shadow:
+                0 0 35px
+                rgba(216,183,106,0.35);
+
+            transform:
+                translateY(-3px);
+        }
+
+
+        .entrada-aviso {
+
+            margin-top: 30px;
+
+            font-size: 13px !important;
+
+            color: #777789 !important;
+
+        }
+
+
+        /* =========================================
+           ESTRELAS
+        ========================================= */
+
+        .ceu {
+
+            position: fixed;
+
+            inset: 0;
+
+            z-index: -1;
+
+            pointer-events: none;
+
+            overflow: hidden;
+        }
+
+
+        .estrela {
+
+            position: absolute;
+
+            width: 2px;
+
+            height: 2px;
+
+            border-radius: 50%;
+
+            background: white;
+
+            opacity: 0.7;
+
+            animation:
+                brilho 3s infinite alternate;
+        }
+
+
+        @keyframes brilho {
+
+            from {
+
+                opacity: 0.2;
+
+                transform: scale(0.7);
+
+            }
+
+            to {
+
+                opacity: 1;
+
+                transform: scale(1.5);
+
+            }
+
+        }
+
+
+        /* =========================================
+           MENU
+        ========================================= */
+
+        nav {
+
+            position: fixed;
+
+            top: 0;
+
+            left: 0;
+
+            width: 100%;
+
+            z-index: 1000;
+
+            display: flex;
+
+            justify-content: center;
+
+            gap: 28px;
+
+            padding: 18px;
+
+            background:
+                rgba(5,6,18,0.88);
+
+            backdrop-filter:
+                blur(12px);
+
+            border-bottom:
+                1px solid
+                rgba(216,183,106,0.25);
+        }
+
+
+        nav a {
+
+            color: #eee9d8;
+
+            text-decoration: none;
+
+            font-size: 14px;
+
+            transition: 0.3s;
+
+        }
+
+
+        nav a:hover {
+
+            color: #d8b76a;
+
+        }
+
+
+        /* =========================================
+           SEÇÕES
+        ========================================= */
+
+        section {
+
+            min-height: 100vh;
+
+            padding:
+                110px 8%;
+
+            position: relative;
+        }
+
+
+        /* =========================================
+           INTRODUÇÃO
+        ========================================= */
+
+        #inicio {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            text-align: center;
+        }
+
+
+        .intro {
+
+            max-width: 900px;
+        }
+
+
+        .simbolos {
+
+            font-size: 55px;
+
+            margin-bottom: 25px;
+
+            animation:
+                flutuar 4s ease-in-out infinite;
+        }
+
+
+        .intro h1 {
+
+            font-size:
+                clamp(50px, 9vw, 100px);
+
+            color: #d8b76a;
+
+            text-shadow:
+                0 0 35px
+                rgba(216,183,106,0.25);
+        }
+
+
+        .intro h2 {
+
+            margin-top: 20px;
+
+            font-weight: normal;
+
+            font-size:
+                clamp(20px, 3vw, 30px);
+        }
+
+
+        .intro p {
+
+            max-width: 650px;
+
+            margin:
+                25px auto;
+
+            line-height: 1.9;
+
+            color: #c9c7d2;
+        }
+
+
+        .botao {
+
+            display: inline-block;
+
+            margin-top: 20px;
+
+            padding:
+                15px 32px;
+
+            border:
+                1px solid #d8b76a;
+
+            border-radius: 30px;
+
+            color: #d8b76a;
+
+            text-decoration: none;
+
+            transition: 0.3s;
+        }
+
+
+        .botao:hover {
+
+            background: #d8b76a;
+
+            color: #10111c;
+
+        }
+
+
+        /* =========================================
+           TÍTULOS
+        ========================================= */
+
+        .titulo {
+
+            text-align: center;
+
+            margin-bottom: 60px;
+        }
+
+
+        .titulo h2 {
+
+            font-size:
+                clamp(38px, 6vw, 60px);
+
+            color: #d8b76a;
+        }
+
+
+        .titulo p {
+
+            margin-top: 15px;
+
+            color: #aaa9b7;
+        }
+
+
+        /* =========================================
+           NÓS
+        ========================================= */
+
+        .nos-box {
+
+            max-width: 950px;
+
+            margin: auto;
+
+            padding: 55px;
+
+            background:
+                rgba(255,255,255,0.045);
+
+            border:
+                1px solid
+                rgba(216,183,106,0.25);
+
+            border-radius: 25px;
+
+            box-shadow:
+                0 25px 60px
+                rgba(0,0,0,0.3);
+        }
+
+
+        .nos-box p {
+
+            color: #dedbe4;
+
+            line-height: 2;
+
+            font-size: 18px;
+
+            margin-bottom: 20px;
+        }
+
+
+        .frase {
+
+            text-align: center;
+
+            color: #d8b76a !important;
+
+            font-size: 25px !important;
+
+            font-style: italic;
+
+            margin-top: 35px;
+        }
+
+
+        /* =========================================
+           TEMPO
+        ========================================= */
+
+        .tempo {
+
+            text-align: center;
+        }
+
+
+        .contador {
+
+            display: flex;
+
+            justify-content: center;
+
+            flex-wrap: wrap;
+
+            gap: 20px;
+
+            margin-top: 50px;
+        }
+
+
+        .tempo-card {
+
+            width: 150px;
+
+            padding: 30px 15px;
+
+            background:
+                rgba(255,255,255,0.05);
+
+            border:
+                1px solid
+                rgba(216,183,106,0.3);
+
+            border-radius: 20px;
+        }
+
+
+        .tempo-card span {
+
+            display: block;
+
+            color: #d8b76a;
+
+            font-size: 43px;
+
+            font-weight: bold;
+        }
+
+
+        .tempo-card small {
+
+            color: #aaa9b7;
+        }
+
+
+        /* =========================================
+           MÚSICA
+        ========================================= */
+
+        .musica-box {
+
+            max-width: 700px;
+
+            margin: auto;
+
+            padding: 55px;
+
+            text-align: center;
+
+            border-radius: 30px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,0.06),
+                    rgba(255,255,255,0.02)
+                );
+
+            border:
+                1px solid
+                rgba(216,183,106,0.25);
+        }
+
+
+        .disco {
+
+            width: 190px;
+
+            height: 190px;
+
+            margin:
+                0 auto 35px;
+
+            border-radius: 50%;
+
+            background:
+
+                radial-gradient(
+                    circle,
+                    #d8b76a 0 8%,
+                    #11121f 9% 18%,
+                    #24253a 19% 20%,
+                    #10111d 21% 42%,
+                    #25263b 43% 44%,
+                    #10111c 45%
+                );
+
+            box-shadow:
+                0 0 45px
+                rgba(216,183,106,0.2);
+
+            animation:
+                girar 8s linear infinite;
+
+            animation-play-state: paused;
+        }
+
+
+        .tocando {
+
+            animation-play-state: running;
+
+        }
+
+
+        @keyframes girar {
+
+            to {
+                transform: rotate(360deg);
+            }
+
+        }
+
+
+        audio {
+
+            width: 100%;
+
+            margin-top: 30px;
+
+        }
+
+
+        /* =========================================
+           FOTOS
+        ========================================= */
+
+        .galeria {
+
+            max-width: 1050px;
+
+            margin: auto;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 30px;
+        }
+
+
+        .foto {
+
+            position: relative;
+
+            overflow: hidden;
+
+            border-radius: 22px;
+
+            border:
+                1px solid
+                rgba(216,183,106,0.3);
+
+            background: #11121d;
+        }
+
+
+        .foto img {
+
+            display: block;
+
+            width: 100%;
+
+            height: 420px;
+
+            object-fit: cover;
+
+            transition: 0.6s;
+        }
+
+
+        .foto:hover img {
+
+            transform: scale(1.06);
+
+        }
+
+
+        .foto-info {
+
+            position: absolute;
+
+            bottom: 0;
+
+            left: 0;
+
+            width: 100%;
+
+            padding: 30px 25px;
+
+            background:
+                linear-gradient(
+                    transparent,
+                    rgba(0,0,0,0.9)
+                );
+        }
+
+
+        .foto-info h3 {
+
+            margin-bottom: 5px;
+
+        }
+
+
+        .foto-info p {
+
+            color: #d5d2dc;
+
+        }
+
+
+        /* =========================================
+           CARTA
+        ========================================= */
+
+        #carta {
+
+            padding-bottom: 130px;
+        }
+
+
+        .carta {
+
+            max-width: 900px;
+
+            margin: auto;
+
+            position: relative;
+
+            padding: 70px;
+
+            color: #302519;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #f6eac7,
+                    #e6d3a4
+                );
+
+            box-shadow:
+                0 35px 90px
+                rgba(0,0,0,0.65),
+
+                inset 0 0 60px
+                rgba(95,63,20,0.15);
+
+            border-radius: 4px;
+        }
+
+
+        .carta::before {
+
+            content: "";
+
+            position: absolute;
+
+            inset: 18px;
+
+            border:
+                2px solid
+                rgba(75,50,20,0.4);
+
+            pointer-events: none;
+        }
+
+
+        /* =========================================
+           BRASÃO
+        ========================================= */
+
+        .brasao-container {
+
+            text-align: center;
+
+            margin-bottom: 35px;
+        }
+
+
+        .brasao {
+
+            width: 190px;
+
+            max-width: 60%;
+
+            height: auto;
+
+            display: block;
+
+            margin: auto;
+
+            filter:
+                drop-shadow(
+                    0 8px 8px
+                    rgba(0,0,0,0.25)
+                );
+        }
+
+
+        .linha-magica {
+
+            width: 80%;
+
+            height: 1px;
+
+            margin:
+                25px auto;
+
+            background:
+                rgba(65,45,20,0.4);
+        }
+
+
+        .carta h1 {
+
+            text-align: center;
+
+            color: #332416;
+
+            font-size: 42px;
+
+            margin-bottom: 10px;
+        }
+
+
+        .carta-subtitulo {
+
+            text-align: center;
+
+            font-style: italic;
+
+            margin-bottom: 45px;
+        }
+
+
+        .carta-texto {
+
+            font-size: 18px;
+
+            line-height: 2;
+        }
+
+
+        .carta-texto p {
+
+            margin-bottom: 22px;
+        }
+
+
+        .saudacao {
+
+            font-size: 23px;
+        }
+
+
+        .assinatura {
+
+            margin-top: 50px;
+
+            text-align: right;
+
+            font-family: cursive;
+
+            font-size: 30px;
+        }
+
+
+        /* =========================================
+           LIVROS
+        ========================================= */
+
+        .livros {
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: flex-end;
+
+            gap: 5px;
+
+            margin-top: 50px;
+
+            height: 120px;
+        }
+
+
+        .livro {
+
+            width: 48px;
+
+            border:
+                2px solid
+                #382615;
+
+            box-shadow:
+                4px 6px 10px
+                rgba(0,0,0,0.3);
+        }
+
+
+        .livro:nth-child(1) {
+            height: 90px;
+        }
+
+
+        .livro:nth-child(2) {
+            height: 115px;
+        }
+
+
+        .livro:nth-child(3) {
+            height: 100px;
+        }
+
+
+        .livro:nth-child(4) {
+            height: 125px;
+        }
+
+
+        /* =========================================
+           STITCH
+        ========================================= */
+
+        .stitch {
+
+            position: fixed;
+
+            right: 25px;
+
+            bottom: 25px;
+
+            font-size: 55px;
+
+            z-index: 500;
+
+            cursor: pointer;
+
+            animation:
+                flutuar 3s ease-in-out infinite;
+        }
+
+
+        /* =========================================
+           RODAPÉ
+        ========================================= */
+
+        footer {
+
+            padding: 50px 20px;
+
+            text-align: center;
+
+            border-top:
+                1px solid
+                rgba(216,183,106,0.2);
+
+            color: #aaa9b7;
+        }
+
+
+        footer strong {
+
+            color: #d8b76a;
+
+        }
+
+
+        /* =========================================
+           CELULAR
+        ========================================= */
+
+        @media (max-width: 700px) {
+
+            nav {
+
+                gap: 9px;
+
+                padding: 15px 5px;
+            }
+
+
+            nav a {
+
+                font-size: 9px;
+
+            }
+
+
+            section {
+
+                padding:
+                    90px 5%;
+            }
+
+
+            .nos-box,
+            .musica-box,
+            .carta {
+
+                padding:
+                    35px 25px;
+            }
+
+
+            .galeria {
+
+                grid-template-columns: 1fr;
+
+            }
+
+
+            .foto img {
+
+                height: 380px;
+
+            }
+
+
+            .carta h1 {
+
+                font-size: 32px;
+
+            }
+
+
+            .carta-texto {
+
+                font-size: 16px;
+
+            }
+
+
+            .brasao {
+
+                width: 150px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================================
+         TELA DE ENTRADA
+    ========================================== -->
+
+    <div id="entrada">
+
+
+        <div class="entrada-conteudo">
+
+
+            <div class="entrada-simbolo">
+
+                ✨ 📖 🩵
+
+            </div>
+
+
+            <h1>
+
+                Para você
+
+            </h1>
+
+
+            <p>
+
+                Existe uma pequena história
+                que eu queria te mostrar.
+
+            </p>
+
+
+            <button
+                class="botao-entrada"
+                onclick="abrirSite()">
+
+                ✨ Abrir 
+
+            </button>
+
+
+            <p class="entrada-aviso">
+
+                Uma pequena surpresa feita especialmente para você.
+
+            </p>
+
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =========================================
+         ESTRELAS
+    ========================================== -->
+
+    <div
+        class="ceu"
+        id="ceu">
+    </div>
+
+
+
+    <!-- =========================================
+         MENU
+    ========================================== -->
+
+    <nav>
+
+        <a href="#inicio">
+            Início
+        </a>
+
+        <a href="#nos">
+            Nós
+        </a>
+
+        <a href="#tempo">
+            Tempo
+        </a>
+
+        <a href="#musica">
+            Música
+        </a>
+
+        <a href="#fotos">
+            Fotos
+        </a>
+
+        <a href="#carta">
+            Carta
+        </a>
+
+    </nav>
+
+
+
+    <!-- =========================================
+         INTRODUÇÃO
+    ========================================== -->
+
+    <section id="inicio">
+
+        <div class="intro">
+
+
+            <div class="simbolos">
+
+                ✨ 📖 🩵
+
+            </div>
+
+
+            <h1>
+
+                Para você
+
+            </h1>
+
+
+            <h2>
+
+                A nossa história
+
+            </h2>
+
+
+            <p>
+
+                Algumas histórias são encontradas
+                em livros.
+
+                Outras são escritas nas estrelas.
+
+                E existem aquelas que duas pessoas
+                escrevem juntas.
+
+            </p>
+
+
+            <p>
+
+                Esta página é uma pequena tentativa
+                de transformar um pouco da nossa
+                história em algo que você possa guardar.
+
+            </p>
+
+
+            <a
+                href="#nos"
+                class="botao">
+
+                Continuar
+
+            </a>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================
+         NÓS
+    ========================================== -->
+
+    <section id="nos">
+
+        <div class="titulo">
+
+            <h2>
+                ♡ Nós
+            </h2>
+
+            <p>
+                A parte mais importante desta história.
+            </p>
+
+        </div>
+
+
+        <div class="nos-box">
+
+
+            <p>
+
+                Talvez o mais bonito da nossa relação
+                seja que ela é baseada em coisas simples.
+
+            </p>
+
+
+            <p>
+
+                Conversas, risadas, olhares, brincadeiras e 
+                momentos inesperados 
+
+            </p>
+
+
+            <p>
+
+                E percebi que esses momentos 
+                só são especiais porque é ao seu lado
+
+            </p>
+
+
+            <p>
+
+                E hoje eu gosto de pensar que a nossa
+                história ainda está apenas começando.
+
+            </p>
+
+
+            <p class="frase">
+
+                "Se a vida fosse um livro, você com certeza seria a melhor parte. 
+                A parte que eu nunca gostaria de chegar à última página. "
+
+            </p>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================
+         TEMPO
+    ========================================== -->
+
+    <section id="tempo">
+
+        <div class="titulo">
+
+            <h2>
+                ⏳ Nosso tempo
+            </h2>
+
+            <p>
+                Cada segundo também faz parte da nossa história.
+            </p>
+
+        </div>
+
+
+        <div class="tempo">
+
+
+            <p>
+
+                A virada de página:
+
+            </p>
+
+
+            <div class="contador">
+
+
+                <div class="tempo-card">
+
+                    <span id="dias">
+                        0
+                    </span>
+
+                    <small>
+                        Dias
+                    </small>
+
+                </div>
+
+
+                <div class="tempo-card">
+
+                    <span id="horas">
+                        0
+                    </span>
+
+                    <small>
+                        Horas
+                    </small>
+
+                </div>
+
+
+                <div class="tempo-card">
+
+                    <span id="minutos">
+                        0
+                    </span>
+
+                    <small>
+                        Minutos
+                    </small>
+
+                </div>
+
+
+                <div class="tempo-card">
+
+                    <span id="segundos">
+                        0
+                    </span>
+
+                    <small>
+                        Segundos
+                    </small>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================
+         MÚSICA
+    ========================================== -->
+
+    <section id="musica">
+
+
+        <div class="titulo">
+
+            <h2>
+                🎵 Nossa música
+            </h2>
+
+            <p>
+                Porque algumas músicas acabam ganhando uma pessoa.
+            </p>
+
+        </div>
+
+
+        <div class="musica-box">
+
+
+            <div
+                class="disco"
+                id="disco">
+            </div>
+
+
+            <h2>
+
+                A nossa música
+
+            </h2>
+
+
+            <p style="margin-top: 15px;">
+
+                A música que sempre vai me fazer
+                lembrar de você.
+
+            </p>
+
+
+            <audio
+                id="player"
+                controls>
+
+                <source
+                    src="nossa-musica.mp3"
+                    type="audio/mpeg">
+
+                Seu navegador não suporta áudio.
+
+            </audio>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================
+         FOTOS
+    ========================================== -->
+
+    <section id="fotos">
+
+
+        <div class="titulo">
+
+            <h2>
+                📸 fotos
+            </h2>
+
+            <p>
+                Quatro lembranças que quero guardar.
+            </p>
+
+        </div>
+
+
+        <div class="galeria">
+
+
+            <div class="foto">
+
+                <img
+                    src="Img/1.jpg"
+                    alt="Nossa foto 1">
+
+                <div class="foto-info">
+
+                    <p>
+                        Uma lembrança especial.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="foto">
+
+                <img
+                    src="Img/3.jpeg"
+                    alt="Nossa foto 2">
+
+                <div class="foto-info">
+
+                    <p>
+                        Uma memória que quero guardar.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="foto">
+
+                <img
+                    src="Img/4.jpeg"
+                    alt="Nossa foto 3">
+
+                <div class="foto-info">
+
+                    <p>
+                        O dia que você quase caiu na mão com uma senhora
+                        no cinema por causa de uma garrafa de água
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="foto">
+
+                <img
+                    src="Img/8.jpeg"
+                    alt="Nossa foto 4">
+
+                <div class="foto-info">
+
+                    <p>
+                        E ainda temos muitas páginas para escrever.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================
+         CARTA
+    ========================================== -->
+
+    <section id="carta">
+
+
+        <div class="titulo">
+
+            <h2>
+                💌 Uma carta para você
+            </h2>
+
+            <p>
+                Uma última surpresa.
+            </p>
+
+        </div>
+
+
+        <div class="carta">
+
+
+            <!-- BRASÃO -->
+
+            <div class="brasao-container">
+
+
+                <img
+                    class="brasao"
+                    src="img/Brasão.png"
+                    alt="Brasão de Hogwarts">
+
+
+            </div>
+
+
+            <div class="linha-magica"></div>
+
+
+            <h1>
+
+                Uma carta para você
+
+            </h1>
+
+
+            <p class="carta-subtitulo">
+
+                Uma correspondência muito especial,
+                destinada exclusivamente a você.
+
+            </p>
+
+
+            <div class="carta-texto">
+
+
+                <p class="saudacao">
+
+                    Querida Bidu,
+
+                </p>
+
+
+                <p>
+
+                  Infelizmente não é uma carta escrita por Dumbledore te convidando para estudar em Hogwarts.
+                  Mas é uma carta feita de coração.
+
+
+                </p>
+
+
+                <p>
+
+                    Eu poderia escrever uma biblioteca inteira sobre você e o quanto te admiro, 
+                    mas ainda assim faltaria palavras
+
+                </p>
+
+
+                <p>
+
+                    Então direi algo mais simples: 
+
+                </p>
+
+
+                <p>
+
+                   Eu gosto muito de você.
+                   Gosto de conversar com você, da sua risada, de como você me cativa, 
+                   dos nossos momentos e das memórias que estamos criando.
+
+
+
+                </p>
+
+
+                <p>
+
+                    As vezes é doido pensar que antes você era uma completa desconhecida, 
+                    e agora você é alguém muito importante para mim.
+
+
+                </p>
+
+
+                <p>
+
+                    E bom, O caminho não vai ser fácil, pois vamos ter desavenças, 
+                    conflitos e dificuldades.
+
+                </p>
+
+
+                <p>
+
+                    Mas quero fazer isso dar certo, porque eu quero você. 
+
+                </p>
+
+
+                <p>
+
+                    E temos muito a aprender ainda, lugares para conhecer, músicas para ouvir
+                    Mas quero viver esses momentos ao seu lado
+
+                </p>
+
+
+                <p>
+
+                   E não importa o tempo ou distância, meu coração só irá pertencer a você. 
+
+                </p>
+
+
+                <p>
+
+                    Você é como um milagre para mim.
+                    Porque quando achava que era impossível existir um amor assim,
+                    você apareceu na minha vida.
+
+                </p>
+
+
+                <p>
+
+                    Eu te amo e vou te amar até o fim dos tempos, meu girassol 
+
+                </p>
+
+
+                <div class="assinatura">
+
+                     ❤️🌻
+
+                
+
+    </section>
+
+
+
+    <!-- =========================================
+         STITCH
+    ========================================== -->
+
+    <div
+        class="stitch"
+        onclick="mensagemStitch()">
+
+        🩵
+
+    </div>
+
+
+
+    <!-- =========================================
+         RODAPÉ
+    ========================================== -->
+
+    <footer>
+
+        <p>
+
+            Feito especialmente para
+            <strong>você</strong>.
+
+        </p>
+
+
+        <p style="margin-top: 12px;">
+
+            Nosso livro ainda está sendo escrito. 📖
+
+        </p>
+
+    </footer>
+
+
+
+    <script>
+
+
+        /* =========================================
+           ABRIR O SITE
+        ========================================== */
+
+        function abrirSite() {
+
+            const entrada =
+                document.getElementById("entrada");
+
+
+            entrada.classList.add("saindo");
+
+
+            /*
+                Depois da animação,
+                removemos a tela de entrada
+                para ela não bloquear o site.
+            */
+
+            setTimeout(
+                function () {
+
+                    entrada.style.display = "none";
+
+                    document.body.style.overflowY = "auto";
+
+                },
+                1300
+            );
+
+        }
+
+
+        /*
+            Enquanto a tela inicial estiver aberta,
+            impedimos o scroll.
+        */
+
+        document.body.style.overflow = "hidden";
+
+
+
+        /* =========================================
+           DATA DO RELACIONAMENTO
+        ========================================== */
+
+        const dataInicio =
+            new Date("2026-09-13T00:00:00");
+
+
+
+        /* =========================================
+           CONTADOR
+        ========================================== */
+
+        function atualizarContador() {
+
+
+            const agora =
+                new Date();
+
+
+            const diferenca =
+                agora - dataInicio;
+
+
+            if (diferenca < 0) {
+
+                return;
+
+            }
+
+
+            const totalSegundos =
+                Math.floor(
+                    diferenca / 1000
+                );
+
+
+            const dias =
+                Math.floor(
+                    totalSegundos / 86400
+                );
+
+
+            const horas =
+                Math.floor(
+                    (totalSegundos % 86400)
+                    / 3600
+                );
+
+
+            const minutos =
+                Math.floor(
+                    (totalSegundos % 3600)
+                    / 60
+                );
+
+
+            const segundos =
+                totalSegundos % 60;
+
+
+            document.getElementById(
+                "dias"
+            ).textContent = dias;
+
+
+            document.getElementById(
+                "horas"
+            ).textContent = horas;
+
+
+            document.getElementById(
+                "minutos"
+            ).textContent = minutos;
+
+
+            document.getElementById(
+                "segundos"
+            ).textContent = segundos;
+
+        }
+
+
+        setInterval(
+            atualizarContador,
+            1000
+        );
+
+
+        atualizarContador();
+
+
+
+        /* =========================================
+           MÚSICA
+        ========================================== */
+
+        const player =
+            document.getElementById(
+                "player"
+            );
+
+
+        const disco =
+            document.getElementById(
+                "disco"
+            );
+
+
+        player.addEventListener(
+            "play",
+            function () {
+
+                disco.classList.add(
+                    "tocando"
+                );
+
+            }
+        );
+
+
+        player.addEventListener(
+            "pause",
+            function () {
+
+                disco.classList.remove(
+                    "tocando"
+                );
+
+            }
+        );
+
+
+        player.addEventListener(
+            "ended",
+            function () {
+
+                disco.classList.remove(
+                    "tocando"
+                );
+
+            }
+        );
+
+
+
+        /* =========================================
+           ESTRELAS
+        ========================================== */
+
+        const ceu =
+            document.getElementById(
+                "ceu"
+            );
+
+
+        for (
+            let i = 0;
+            i < 140;
+            i++
+        ) {
+
+
+            const estrela =
+                document.createElement(
+                    "div"
+                );
+
+
+            estrela.classList.add(
+                "estrela"
+            );
+
+
+            estrela.style.left =
+                Math.random() * 100 + "%";
+
+
+            estrela.style.top =
+                Math.random() * 100 + "%";
+
+
+            estrela.style.animationDelay =
+                Math.random() * 4 + "s";
+
+
+            estrela.style.width =
+                Math.random() * 3 + 1 + "px";
+
+
+            estrela.style.height =
+                estrela.style.width;
+
+
+            ceu.appendChild(
+                estrela
+            );
+
+        }
+
+
+
+        /* =========================================
+           STITCH
+        ========================================== */
+
+        function mensagemStitch() {
+
+            alert(
+                "Ohana significa família. ❤️\n\n" +
+                "E algumas pessoas se tornam uma parte " +
+                "muito importante da nossa história."
+            );
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>
